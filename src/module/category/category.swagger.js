@@ -21,7 +21,12 @@
  *                      type: string
  *                  parent: 
  *                      type: string
- *                  
+ *                  meta_title:
+ *                      type: string
+ *                  meta_description: 
+ *                      type: string
+ *                  canonical:
+ *                      type: string    
  */
 /**
  * @swagger
@@ -39,6 +44,12 @@
  *                  icon:
  *                      type: string
  *                  parent:
+ *                      type: string
+ *                  meta_title:
+ *                      type: string
+ *                  meta_description: 
+ *                      type: string
+ *                  canonical:
  *                      type: string
  *                  
  */

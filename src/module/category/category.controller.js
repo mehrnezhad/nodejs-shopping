@@ -10,9 +10,9 @@ class CategoryController {
     }
     async create(req, res, next) {
         try {
-            const { title, slug, icon, parent } = req.body
+            const { title, slug, icon, parent, meta_title , meta_description , canonical } = req.body
             await categoryCreateValidation.validateAsync({ title })
-            await this.#service.create({ title, slug, icon, parent })
+            await this.#service.create({ title, slug, icon, parent, meta_title , meta_description , canonical })
             return res.status(201).json(
                 { message: categoryMessage.CreateSuccessfully }
             )
@@ -52,6 +52,7 @@ class CategoryController {
             const category = await this.#service.getChildrenCategory(id)
             res.status(200).json({
                 category
+               
             })
         } catch (error) {
             next(error)
@@ -73,8 +74,8 @@ class CategoryController {
     async updateCategory(req, res, next) {
         try {
             const { id } = req.params
-            const { title, icon, parent, slug } = req.body
-            const updatedCategory = await this.#service.updateCategory({id,title, icon, parent , slug });
+            const { title, icon, parent, slug, meta_title , meta_description , canonical} = req.body
+            const updatedCategory = await this.#service.updateCategory({id,title, icon, parent , slug ,meta_title , meta_description , canonical});
             return res.status(200).json({
                 updatedCategory,
                 message: categoryMessage.CategoryUpdated

@@ -17,6 +17,23 @@ const Authorization = async(req,res,next)=>{
     } catch (error) {
         next(error)
     }
+    
 
 }
 export default Authorization
+
+
+export const AuthorizationByGraphQL = async(req,res)=>{
+    
+        const header = req.headers
+        const token = header?.authorization?.split(" ")[1]
+        if(!token) throw new createHttpError.Unauthorized(authMessage.ACCESSTOKEN_NOT_EXISTS_IN_HEADER)
+        const {mobile} = jwt.verify(token,JSON_WEBTOKEN_SECRET)
+        if(!mobile) throw new createHttpError.Unauthorized(authMessage.ACCESSTOKEN_NOT_EXISTS_IN_HEADER)
+        const user = await userModel.findOne({mobile},{password:0 , email: 0 , username : 0 ,  otp: 0 , __v : 0 , verifiedMobile : 0}).lean()
+        if(!user) throw new createHttpError.Unauthorized(authMessage.ACCESSTOKEN_NOT_EXISTS_IN_HEADER)
+        req.user = user
+        return req.user
+
+    
+}

@@ -1,0 +1,18 @@
+{
+  blogs{
+    title
+    author {
+      first_name
+    }
+    comments{
+      comment
+      answers{
+        comment
+        show
+      }
+    }
+    category{
+      title
+    }
+  }
+}

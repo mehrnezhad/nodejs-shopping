@@ -1,0 +1,35 @@
+{
+  bookmarkBlogUser{
+  title
+  author{
+    first_name
+    mobile
+  }
+}
+}
+
+{
+  bookmarkCourseUser{
+  title
+  teacher{
+    first_name
+    mobile
+  }
+  bookmarks{
+      mobile
+    }
+}
+}
+
+{
+  bookmarkProductUser{
+  title
+  supplier{
+    first_name
+    mobile
+  }
+  bookmarks{
+      mobile
+    }
+}
+}

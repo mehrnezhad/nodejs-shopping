@@ -1,0 +1,7 @@
+mutation{
+   createCommentForProduct(comment: "thank you 10" ,
+    productID:"65e700a548adfa347ede229c",parent:"66275fba77a4f049fdc9b4cd"){
+    statusCode
+    message
+  }
+}

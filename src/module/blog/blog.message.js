@@ -5,5 +5,6 @@ export const blogMessage = Object.freeze({
     errorDeleted : 'حذف با موفقیت انجام نشد',
     successDelete: 'حذف با موفقیت انجام شد',
     errorUpdate : 'به روز رسانی انجام نشد',
-    successUpdate : 'به روز رسانی انجام شد'
+    successUpdate : 'به روز رسانی انجام شد',
+    notFound: 'بلاگ پیدا نشد'
 })

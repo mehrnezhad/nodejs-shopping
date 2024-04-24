@@ -1,0 +1,18 @@
+{
+  course{
+    title
+    imageUrl
+    category{
+      title
+    }
+    teacher{
+      mobile
+    }
+    chapter{
+      title
+      episodes{
+        title
+      }
+    }
+  }
+}

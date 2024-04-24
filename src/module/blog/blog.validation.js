@@ -8,5 +8,8 @@ export const blogValidationSchema = Joi.object({
     category : Joi.string().error(createHttpError.BadRequest('وارد کردن دسته بندی الزامی می باشد')),
     image: Joi.allow(),
     author:Joi.allow(),
-    slug: Joi.allow()
+    slug: Joi.allow(),
+    meta_title: Joi.string().min(3).error(createHttpError.BadRequest('وارد کردن عنوان صفحه الزامی می باشد')),
+    meta_description: Joi.string().min(10).error(createHttpError.BadRequest('وارد کردن متای توضیحات الزامی می باشد')),
+    canonical: Joi.allow()
 })

@@ -1,13 +1,29 @@
+
 import { Schema, model, Types} from "mongoose";
 
-const commentsSchema = new Schema({
- user : {type : Types.ObjectId , required : true},
- comment : { type: String , required : true},
- createdAt : {type : Date , default : Date.now() },
- parent : {type: Types.ObjectId }
+const answerSchema = new Schema({
+    comment : {type: String , required: true},
+    user: {type: Types.ObjectId, ref: "user"},
+    show : {type : Boolean , default : false}
+},{
+    timestamps : true
 })
 
+const commentsSchema = new Schema({
+comment : {type: String},
+user: {type: Types.ObjectId, ref: "user"},
+answers :{type : [answerSchema] , default:[]},
+show : {type : Boolean , default : false},
+openToComment : {type: Boolean , default : true}
+},{
+    timestamps : {
+        createdAt : true
+    }
+})
+
+
 const blogSchema = new Schema({
+
     title : {type : String , required: true},
     slug : {type : String , required:true},
     short_desc : {type : String , required: true},
@@ -15,11 +31,14 @@ const blogSchema = new Schema({
     image : {type : String },
     tags : {type : [String] , default: []},
     author : {type : Types.ObjectId , ref: "user", required : true},
-    category : {type: [Types.ObjectId] ,ref: "category", required : true},
+    category : {type: Types.ObjectId ,ref: "category", required : true},
     likes : {type: [Types.ObjectId] , ref:"user", default : []},
     dislikes : {type: [Types.ObjectId] , ref:"user", default : []},
     bookmarks : {type: [Types.ObjectId] , ref:"user", default : []},
-    comments : {type : [commentsSchema] , default : []}
+    comments : {type : [commentsSchema] , default : []},
+    meta_title: {type:String , required: true},
+    meta_description:{type:String , required: true},
+    canonical:{type: String}
 },{
     timestamps : true,
     versionKey : false,
@@ -28,14 +47,14 @@ const blogSchema = new Schema({
     }
 })
 
-blogSchema.virtual('author_detail',{
+blogSchema.virtual('authorField',{
   ref: "user",
   localField: "author",
   foreignField : "_id",
 
 })
 
-blogSchema.virtual('category_detail',{
+blogSchema.virtual('categoryField',{
     ref: "category",
     localField: "category",
     foreignField : "_id",

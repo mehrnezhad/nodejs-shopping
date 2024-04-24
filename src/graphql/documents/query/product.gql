@@ -1,0 +1,11 @@
+{
+  products{
+  title
+  text
+  images
+  imagesUrl
+   category{
+     title 
+   }
+ }
+}

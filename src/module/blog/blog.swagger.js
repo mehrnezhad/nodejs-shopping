@@ -15,6 +15,8 @@
  *                  -   description
  *                  -   short_desc
  *                  -   category
+ *                  -   meta_title
+ *                  -   meta_description
  *              properties:
  *                  title:
  *                      type: string
@@ -27,6 +29,12 @@
  *                  image:
  *                      type: file 
  *                  category:
+ *                      type: string
+ *                  meta_title:
+ *                      type: string
+ *                  meta_description: 
+ *                      type: string
+ *                  canonical:
  *                      type: string
  *          updateBlog:
  *              type: object
@@ -43,8 +51,16 @@
  *                      type: file
  *                  category:
  *                      type: string
+ *                  meta_title:
+ *                      type: string
+ *                  meta_description: 
+ *                      type: string
+ *                  canonical:
+ *                      type: string
  * 
  */
+
+import { object } from "joi";
 
 /**
  * @swagger
@@ -116,6 +132,40 @@
  */
 /**
  * @swagger
+ *  /blog/category/{slug}:
+ *      get:
+ *          tags:
+ *              -   Blog
+ *          summary: get blogs with categorySlug
+ *          parameters:
+ *              -   in:  path
+ *                  name: slug
+ *                  type: string
+ *              -   in: query
+ *                  name: page
+ *                  type: string
+ *          responses:
+ *              200:
+ *                  description: Success        
+ */
+/**
+ * @swagger
+ *  /blog/{slug}:
+ *      get:
+ *          tags:
+ *              -   Blog
+ *          summary: get blog with slug
+ *          parameters:
+ *              -   in: path
+ *                  type: string
+ *                  name: slug
+ *                  required: true
+ *          responses:
+ *              200:
+ *                  description: success
+*/
+/**
+ * @swagger
  *  /blog/{id}:
  *      get:
  *          tags:
@@ -131,6 +181,7 @@
  *                  description: success
  *                 
  */
+
 /**
  * @swagger
  *  /blog/{id}:
@@ -147,4 +198,79 @@
  *              200:
  *                  description: success
  * 
+ */
+/**
+ * @swagger
+ *  components:
+ *      schemas:
+ *          AddComment:
+ *              type: object
+ *              required:
+ *                  -   comment
+ *              properties:
+ *                  comment:
+ *                      type: string
+ *                  parent:
+ *                      type: string
+ *          AddAnswer:
+ *              type: object
+ *              required: 
+ *                  -   comment
+ *              properties:
+ *                  comment:
+ *                      type: string
+ *                 
+ *
+*/
+/**
+ * @swagger
+ *  /blog/{id}/comment/create:
+ *      patch:
+ *          tags: 
+ *              -   Blog
+ *          summary: add comment to blog
+ *          parameters:
+ *              -   in: path
+ *                  name: id
+ *                  type: string
+ *                  required: true
+ *          requestBody:
+ *              content:
+ *                  application/x-www-form-urlencoded:
+ *                      schema:
+ *                          $ref: '#/components/schemas/AddComment'
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/AddComment'
+ *          responses:
+ *              201:
+ *                  description: success
+ */
+/**
+ * @swagger 
+ *  /blog/{id}/comment/{commentID}/createreply:
+ *      patch:
+ *          tags: 
+ *              -   Blog
+ *          summary: add answer to comment
+ *          parameters:
+ *              -   in: path
+ *                  name: id
+ *                  type: string
+ *                  required: true
+ *              -   in : path
+ *                  name: commentID
+ *                  type: string
+ *                  required: true
+ *          requestBody: 
+ *              content:
+ *                  application/x-www-form-urlencoded:
+ *                      schema:
+ *                          $ref: '#/components/schemas/AddAnswer'
+ *                  application/json:
+ *                      schema:
+ *                          $ref: '#/components/schemas/AddAnswer'
+ *          responses:
+ *              200:
+ *                  description: success
  */

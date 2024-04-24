@@ -67,7 +67,7 @@ class CategoryService {
     }
 
     async getChildrenCategory(parent) {
-        const category = await this.#model.findOne({ parent })
+        const category = await this.#model.find({ parent })
         return category
     }
 
@@ -93,7 +93,10 @@ class CategoryService {
                   parents: category?.parents?.map(item => (item == category?.parent ? categoryDto?.parent : item)),
                   title :  categoryDto?.title,
                   icon :  categoryDto?.icon,
-                  slug :  categoryDto?.slug
+                  slug :  categoryDto?.slug,
+                  meta_title: categoryDto?.meta_title, 
+                  meta_description: categoryDto?.meta_description, 
+                  canonical: categoryDto?.canonical
                 }
              })
         }else{
@@ -101,7 +104,10 @@ class CategoryService {
                 $set:{
                   title :  categoryDto?.title,
                   icon :  categoryDto?.icon,
-                  slug :  categoryDto?.slug
+                  slug :  categoryDto?.slug,
+                  meta_title: categoryDto?.meta_title, 
+                  meta_description: categoryDto?.meta_description, 
+                  canonical: categoryDto?.canonical
                 }
              })
         }

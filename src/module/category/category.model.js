@@ -1,3 +1,4 @@
+
 import { Schema, model, Types } from "mongoose";
 
 const schemaCategory = new Schema({
@@ -5,7 +6,10 @@ const schemaCategory = new Schema({
     slug: { type: String},
     icon: { type: String, required: false },
     parent: { type: Types.ObjectId, ref: "category", required: false , default: undefined},
-    parents: { type: [Types.ObjectId], ref: "category", required: false, default: [] }
+    parents: { type: [Types.ObjectId], ref: "category", required: false, default: [] },
+    meta_title:{type:String , required: true},
+    meta_description: {type: String , required: true},
+    canonical:{type: String }
 }, {
     timestamps: true,
     toJSON: {

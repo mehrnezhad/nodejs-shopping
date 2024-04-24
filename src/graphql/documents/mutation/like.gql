@@ -1,0 +1,6 @@
+mutation{
+   likeCourse(courseID:"66110d81b89ed154034dbe48"){
+    statusCode
+    message
+  }
+}
