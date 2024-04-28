@@ -9,6 +9,7 @@ import { roleRouter } from "./module/role/role.route.js";
 import { permissionRouter } from "./module/permission/permission.route.js";
 import { graphqlHTTP } from "express-graphql";
 import graphqlConfig from "./config/graphql.config.js";
+import { paymentRouter } from "./module/payment/payment.route.js";
 
 const router = Router()
 
@@ -20,6 +21,8 @@ router.use('/course', courseRouter)
 router.use('/user',userRouter)
 router.use('/role',roleRouter)
 router.use('/permission' , permissionRouter)
+router.use('/payment' , paymentRouter)
+
 
 //router.use('/graphql',graphqlHTTP(graphqlConfig))
 

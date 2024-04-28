@@ -7,7 +7,7 @@ import { createCommentForCourseResolver, createCommentForProductResolver, create
 import { likeBlogResolver, likeCourseResolver, likeProductResolver } from "./mutations/like.resolver.js";
 import { dislikeForBlogResolver, dislikeForCourseResolver, dislikeForProductResolver } from "./mutations/dislike.resolver.js";
 import { bookmarkBlogResolver, bookmarkCourseResolver, bookmarkProductResolver } from "./mutations/bookmark.resolver.js";
-import { bookmarkBlogForUserResolver, bookmarkCourseForUserResolver, bookmarkProductForUserResolver } from "./queries/user-profile.resolver.js";
+import { bookmarkBlogForUserResolver, bookmarkCourseForUserResolver, bookmarkProductForUserResolver, userBasketResolver } from "./queries/user-profile.resolver.js";
 import { addCourseToBasketResolver, addProductToBasketResolver, removeCourseFromBasketResolver, removeProductFromBasketResolver } from "./mutations/basket.resolver.js";
 
 const RootQuery = new GraphQLObjectType({
@@ -21,6 +21,7 @@ const RootQuery = new GraphQLObjectType({
         bookmarkBlogUser: bookmarkBlogForUserResolver,
         bookmarkCourseUser: bookmarkCourseForUserResolver,
         bookmarkProductUser: bookmarkProductForUserResolver,
+        userBasket: userBasketResolver
     }
 })
 

@@ -33,7 +33,9 @@ const userSchema = new Schema({
     discount: { type: Number, idefault: 0 },
     basket: { type: basketSchema },
     birthday: { type: String },
-    courses: { type: [Types.ObjectId], ref: "course", default: [] }
+    courses: { type: [Types.ObjectId], ref: "course", default: [] },
+    products: { type: [Types.ObjectId], ref: "product", default: [] },
+    
 }, {
     timestamps: true,
     toJSON: {

@@ -65,14 +65,8 @@ export const addCourseToBasketResolver = {
         const course = await getCourseFromBasket(courseID, user._id)
         let message
         if (course) {
-
-            await userModel.updateOne({ id: user._id, "basket.courses.courseID": courseID }, {
-                $inc: {
-                    "basket.courses.$.count": 1
-
-                }
-            })
-            message = 'به تعداد دوره در سبد خرید اضافه شد'
+             
+            throw new createHttpError.InternalServerError('دوره قبلا در سبد خرید اضافه شده است')
 
         } else {
 
